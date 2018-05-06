@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10 main" align="center">
+    <!--Content Row-->
+    <div class="row" align="center">
+        <!--Header column-->
+        <div class="col-xs-12 heading" align="center">
+            <img src="../assets/img/mustacheburger.png" alt="burger" width="250">
+            <h1>Eat-Da-Burger</h1>
+        </div>
+    </div>
+    <!--Left: burgers created column-->
+    <div class="col-xs-6">
+        <div class="row" align="center">
+            {{#each burgers}} 
+                {{#unless devoured}}
+            <!--List column-->
+                    <div class="col-xs-9 text-center">
+                        <pre>{{id}}. {{burger_name}}</pre>
+                        <!--Button column-->
+                    </div>
+                    <div class="col-xs-3 text-center">
+                        <form method="POST" action = "/burgers/update?_method=PUT">
+                            <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                            <button type="submit" class="btn btn-warning hvr-shrink">Devour It!</button>
+                        </form>
+                    </div>
+               {{/unless}}
+            {{/each}}
+        </div> 
+    </div>
+    
+    <!--Right: burgers devoured column-->
+    <div class="col-xs-6">
+        <div class="row" align="center">
+            <!--List column-->
+            <div class="col-xs-12" class="list">
+                <ul>
+                    {{#each burgers}}
+                        {{#if devoured}}
+                        <pre>{{id}}. {{burger_name}}</pre>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Input Form Section-->
+    <div class="row" align="center">
+        <div class="col-xs-12 text-center">
+            <form action="/burgers/create" method="POST" class="create-form">
+                <div class="form-group">
+                    <input type="text" class="box" id="ca" name="burger_name">
+                </div>
+                <button class="btn btn-warning sub" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="col-xs-1"></div>
+</div>
+<div class="footer">
+    <div class="banner">&copy; 2018 Evelyn Cude</div>
+</div>
+
